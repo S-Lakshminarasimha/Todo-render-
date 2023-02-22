@@ -27,7 +27,7 @@ app.use(session({
     saveUninitialized:false,
     cookie:{maxAge:(1000*60*100)},
     store:MongoStore.create({
-        mongoUrl:"mongodb://127.0.0.1/TODO_APP",
+        mongoUrl:"mongodb+srv://Lakhsminarasimha:aRI3b0MwtoSQadBW@cluster0.d8c18dg.mongodb.net/TODO?retryWrites=true&w=majority",
         autoRemove:'disabled'
     })
     

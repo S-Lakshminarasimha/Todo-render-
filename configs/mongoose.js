@@ -10,3 +10,4 @@ db.once('open',function(err){
     if(err){return console.log('error connecting to db',err)}
     return console.log("Successfully connected to db")
 })
+
