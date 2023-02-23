@@ -56,3 +56,21 @@ h1{
     font-size: 4rem;
     margin-bottom:50px;
 }
+
+// mobile styles
+@media only screen and (max-width: 600px) {
+    #login_form{
+        padding:0;
+        border: none;
+    }
+    #login_cont{
+        #user_inputs{
+            input{
+                font-size: 1.2em;
+                &::placeholder{
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+  }

@@ -99,3 +99,59 @@ form{
         }
 
 }
+
+// Mobile styles
+
+@media only screen and (max-width: 600px) {
+    nav{
+        justify-content: space-between;
+        padding-inline: 15px;
+        #logo{
+            padding: 0;
+            i{
+                font-size: 1.4rem;
+                padding-left: 10px;
+            }
+            span{
+                display: none;
+            }
+        }
+        a{
+            padding:5px 10px;
+        }
+    }
+
+    #content{
+        margin-top: 30px;
+        h1{
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            input{
+                margin-right: 0;
+                padding: 5px 10px;
+                width:60%;
+                &::placeholder{
+                    font-size: 1rem;
+                }
+                outline: none;
+            }
+            button{
+                padding:8px 10px;
+                font-size: .7rem;
+                margin-left: 2px;
+            }
+        }
+        #tasks{
+            padding-inline:20px;
+            .task{
+                padding:7px 10px;
+                letter-spacing: 1.5px;
+            }
+        }
+    }
+  }

@@ -56,3 +56,16 @@ h1 {
   font-size: 4rem;
   margin-bottom: 50px;
 }
+
+@media only screen and (max-width: 600px) {
+  #signup_form {
+    padding: 0;
+    border: none;
+  }
+  #signup_cont #user_inputs input {
+    font-size: 1.2em;
+  }
+  #signup_cont #user_inputs input::placeholder {
+    font-size: 1em;
+  }
+}
