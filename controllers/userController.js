@@ -55,16 +55,41 @@ module.exports.createSession = function(req,res){
 
 // rendering Profile Page to the user
 
-const Task = require('../models/taskmodel')
+// const Task = require('../models/taskmodel')  ---old
 
-module.exports.profile = function(req,res){
-    Task.find({user:req.user._id},function(err,task){             //remember the populat if you want to display the user details also
-        if(err){                                                 // syntax : Task.find({}).populate('user').exec(function returned in left code)
-            return console.log("error displayind data",err)
-        }
-        return res.render('Profile', {Task:task})
-    })    
-}
+const {Not_Started_Tasks,In_Progress_Tasks,Completed_Tasks} = require('../models/taskmodel')
+
+
+// module.exports.profile = function(req,res){
+//     Task.find({user:req.user._id},function(err,task){             //remember the populat if you want to display the user details also
+//         if(err){                                                             // syntax : Task.find({}).populate('user').exec(function returned in left code)
+//             return console.log("error displaying data",err)
+//         }
+//         return res.render('Profile', {Task:task})
+//     })   
+    
+// }
+
+module.exports.profile = function(req, res) {
+    const userTasks = {};
+  
+    const notStartedTaskPromise = Not_Started_Tasks.find({ user: req.user._id }).exec();
+    const inProgressTaskPromise = In_Progress_Tasks.find({ user: req.user._id }).exec();
+    const completedTaskPromise = Completed_Tasks.find({ user: req.user._id }).exec();
+  
+    Promise.all([notStartedTaskPromise, inProgressTaskPromise, completedTaskPromise])
+      .then(([notStartedTasks, inProgressTasks, completedTasks]) => {
+        userTasks.Not_Started_Task = notStartedTasks;
+        userTasks.In_Progress_Task = inProgressTasks;
+        userTasks.Completed_Task = completedTasks;
+  
+        res.render('Profile', { userTasks });
+      })
+      .catch(err => {
+        console.log("Error displaying data:", err);
+        res.status(500).send('Internal Server Error');
+      });
+  };
 
 
 

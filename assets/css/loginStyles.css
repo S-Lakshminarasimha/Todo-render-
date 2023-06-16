@@ -4,35 +4,68 @@
   box-sizing: border-box;
 }
 
-#wrapper {
+body {
+  display: flex;
+}
+
+#left {
+  width: 50%;
   height: 100vh;
-  width: 100%;
-  background-color: #EEE;
+  background-color: #000;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+}
+
+#wrapper {
+  height: 100vh;
+  width: 50%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+}
+
+#quote {
+  font-size: 3.5rem;
+  text-align: center;
+  opacity: 0.7;
+  color: #c6d6f6;
+  line-height: 100px;
 }
 
 #login_form {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 2px solid #678983;
   padding: 40px 60px;
 }
 #login_form button {
   padding: 10px 50px;
-  font-size: 1.2rem;
-  color: white;
-  background-color: black;
+  margin-top: 20px;
+  width: 100%;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  color: #c6d6f6;
+  background-color: #000;
   cursor: pointer;
-  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+#login_form button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #login_cont {
-  margin-top: 50px;
+  margin-top: 80px;
+  height: 75%;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 0 20px #c6d6f6;
+  border-radius: 1rem;
 }
 #login_cont #user_inputs {
   display: flex;
@@ -40,32 +73,23 @@
   flex-direction: column;
 }
 #login_cont #user_inputs input {
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  color: black;
-  background-color: inherit;
-  border: 2px solid black;
+  outline: none;
+  border: none;
+  padding: 10px 5px;
+  font-size: 1.2rem;
+  color: #000;
+  opacity: 0.7;
+  border-bottom: 2px solid black;
   margin-bottom: 30px;
 }
 #login_cont #user_inputs input::placeholder {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  color: #000;
 }
 
 h1 {
-  font-size: 4rem;
-  margin-bottom: 50px;
-}
-
-@media only screen and (max-width: 600px) {
-  #login_form {
-    padding: 0;
-    border: none;
-  }
-  #login_cont #user_inputs input {
-    font-size: 1.2em;
-  }
-  #login_cont #user_inputs input::placeholder {
-    font-size: 1em;
-  }
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #000;
+  font-family: monospace;
 }

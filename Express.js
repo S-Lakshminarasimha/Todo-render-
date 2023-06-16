@@ -3,7 +3,8 @@ const port = 8000
 const bodyParser = require('body-parser')
 const db = require('./configs/mongoose')
 const sass = require('sass')
-
+const path = require('path')
+const { ObjectId } = require("mongodb"); // Add this line to import ObjectId
 
 const passport=  require('passport')
 const localStrategey = require('./configs/passport')
@@ -41,6 +42,10 @@ app.use(passport.setAuthenticatedUser)
 // Route Header - initial entry to the other routes
 app.use('/',require('./routes/index.js'))
 
+app.get('/assets/js/drag.js', function(req, res) {
+    res.setHeader('Content-Type', 'text/javascript');
+    res.sendFile(path.join(__dirname+'/assets/js/drag.js'));
+  });
 
 //Making sever listening to the ports
 app.listen(port,function(err){

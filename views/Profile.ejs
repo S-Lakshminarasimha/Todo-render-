@@ -4,31 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png">
     <link rel="stylesheet" href="/css/profileStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Profile Page</title>
+    <title>TODO</title>
 </head>
 <body>
     <div id="wrapper">
         <nav>
             <span id="logo">
-                <i class="fa-solid fa-user"></i>
+                <!-- <i class="fa-solid fa-user"></i> -->
                 <span><%=user.username %></span>
             </span>
+            <form action="/profile/createTask" method="post">
+                <input type="text" placeholder="Enter Your Task Details ....." required autocomplete="off" name="content"> 
+                <button type="submit">ADD TASK</button>
+            </form>
             <a href="/logout">LOG OUT</a>
         </nav>
         <div id='content'>
-            <h1>TODO</h1>
-            <form action="/profile/createTask" method="post">
-                <input type="text" placeholder="Plan Something..." required autocomplete="off" name="content"> 
-                <button type="submit">ADD TASK</button>
-            </form>
-            <div id="tasks">
-                <% for (T of Task){ %>
-                    <div class="task"><%= T.content%> <a href="/profile/deleteTask/<%= T._id%>">X</a></div>
-                <% } %>
+            
+            <div  class="section" data-zone="notstarted">
+                <div class="category"><div id="notstarted">Not Started</div></div>
+                <div id="tasks">
+                    <% for (T of userTasks.Not_Started_Task){ %>
+                        <div class="task" data-id ="<%= T._id%>" draggable="true"><%= T.content%> <a href="/profile/deleteTask/<%= T._id%>/notstarted">X</a></div>
+                    <% } %>
+                </div>
+
             </div>
+            <div  class="section" data-zone="inprogress">
+                <div class="category"><div id="inprogress">In Progress</div></div>
+                <div id="tasks">
+                    <% for (T of userTasks.In_Progress_Task){ %>
+                        <div class="task" data-id ="<%= T._id%>" draggable="true"><%= T.content%> <a href="/profile/deleteTask/<%= T._id%>/inprogress">X</a></div>
+                    <% } %>
+                </div>
+            </div>
+            <div  class="section" data-zone="completed">
+                <div class="category"><div id="completed">Completed</div></div>
+                <div id="tasks">
+                    <% for (T of userTasks.Completed_Task){ %>
+                        <div class="task" data-id ="<%= T._id%>" draggable="true"><%= T.content%> <a href="/profile/deleteTask/<%= T._id%>/completed">X</a></div>
+                    <% } %>
+                </div>
+            </div>
+            
         </div>
     </div>
+
+    <script type="text/javascript" src="/assets/js/drag.js"></script>
+    
 </body>
 </html>
